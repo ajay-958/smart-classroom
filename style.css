@@ -1,0 +1,93 @@
+:root {
+    --bg-color: #050b14;
+    --card-bg: rgba(16, 24, 39, 0.8);
+    --border-color: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% -20%, #1e3a8a 0%, var(--bg-color) 50%);
+    color: var(--text-main);
+    text-align: center;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+.dashboard-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    width: 260px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.data-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+}
+
+#status-card {
+    width: 100%;
+    max-width: 550px;
+    margin-top: 30px;
+    border: 2px solid #334155;
+}
+
+#status-message {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
