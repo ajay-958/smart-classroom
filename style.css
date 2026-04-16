@@ -23,18 +23,16 @@ body {
 h1 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 3rem;
-    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 40px;
     text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
 }
 
 .dashboard-grid {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 900px;
+    margin-bottom: 30px;
 }
 
 .card {
@@ -44,50 +42,25 @@ h1 {
     border-radius: 20px;
     padding: 30px;
     width: 260px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: transform 0.3s ease, border-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card h2 {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-top: 0;
-    margin-bottom: 15px;
+    transition: all 0.5s ease;
 }
 
 .data-value {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 700;
-    margin: 0;
-    line-height: 1;
+    margin: 10px 0;
 }
 
 #status-card {
     width: 100%;
-    max-width: 550px;
-    margin-top: 30px;
-    border: 2px solid #334155;
+    max-width: 600px;
 }
 
 #status-message {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
-    letter-spacing: 1px;
 }
 
-.loading {
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
+.loading { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }

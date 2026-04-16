@@ -13,66 +13,21 @@
 
     <div class="dashboard-grid">
         <div class="card">
-            <h2>Live Occupancy</h2>
+            <h2>Occupancy</h2>
             <p id="occ-value" class="data-value loading">--</p>
         </div>
 
         <div class="card">
-            <h2>Temperature</h2>
-            <p id="temp-value" class="data-value loading">--°</p>
+            <h2>Air Quality</h2>
+            <p id="aqi-value" class="data-value loading">--</p>
         </div>
     </div>
 
     <div id="status-card" class="card">
-        <h2>System Status</h2>
-        <p id="status-message" class="loading">Establishing Uplink...</p>
+        <h2>System Intelligence</h2>
+        <p id="status-message" class="loading">Syncing Nodes...</p>
     </div>
 
-    <script>
-        const channelID = "YOUR_CHANNEL_ID"; // **PUT YOUR THINGSPEAK ID HERE**
-
-        async function updateDashboard() {
-            try {
-                const response = await fetch(`https://api.thingspeak.com/channels/${channelID}/feeds/last.json`);
-                const data = await response.json();
-
-                document.querySelectorAll('.loading').forEach(el => el.classList.remove('loading'));
-
-                document.getElementById('occ-value').innerText = data.field1 !== null ? data.field1 : "0";
-                
-                let statusMsg = "System Online";
-                let neonColor = "#334155"; 
-                let statusCode = parseInt(data.field3);
-
-                if (statusCode === 1) { 
-                    statusMsg = "OPTIMAL: Ideal conditions active.";
-                    neonColor = "#22c55e"; 
-                } 
-                else if (statusCode === 2) { 
-                    statusMsg = "WARNING: Insufficient light for study.";
-                    neonColor = "#f59e0b"; 
-                } 
-                else if (statusCode === 3) { 
-                    statusMsg = "STANDBY: Room empty. Energy saved.";
-                    neonColor = "#38bdf8"; 
-                }
-
-                const statusCard = document.getElementById('status-card');
-                const statusText = document.getElementById('status-message');
-                
-                statusText.innerText = statusMsg;
-                statusText.style.color = neonColor;
-                statusCard.style.borderColor = neonColor;
-                statusCard.style.boxShadow = `0 0 25px ${neonColor}40`;
-
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById('status-message').innerText = "Connection Lost";
-            }
-        }
-
-        updateDashboard();
-        setInterval(updateDashboard, 15000);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
