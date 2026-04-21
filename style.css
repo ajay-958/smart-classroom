@@ -4,6 +4,7 @@
     --border-color: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
+    --neon-blue: #38bdf8;
 }
 
 body {
@@ -25,14 +26,17 @@ h1 {
     font-size: 3rem;
     text-transform: uppercase;
     text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    margin-bottom: 40px;
 }
 
 .dashboard-grid {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 30px;
+    /* Updated: allows 3 cards to sit side-by-side on most screens */
+    max-width: 1000px; 
 }
 
 .card {
@@ -41,26 +45,45 @@ h1 {
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 30px;
-    width: 260px;
-    transition: all 0.5s ease;
+    /* Updated: slightly narrower to fit the 3-card layout better */
+    width: 240px; 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 0;
 }
 
 .data-value {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 4rem;
+    font-size: 3.5rem; /* Slightly smaller to accommodate the degree symbol */
     font-weight: 700;
     margin: 10px 0;
+    color: var(--neon-blue);
 }
 
 #status-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px; /* Wider for the longer intelligence messages */
+    margin-top: 20px;
 }
 
 #status-message {
     font-size: 1.4rem;
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-.loading { animation: pulse 1.5s infinite; }
-@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+/* Smooth Loading Pulse */
+.loading { animation: pulse 2s infinite ease-in-out; }
+@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 0.8; } 100% { opacity: 0.3; } }
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+    .card { width: 90%; }
+    h1 { font-size: 2rem; }
+}
