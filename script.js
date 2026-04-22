@@ -26,8 +26,36 @@ async function updateDashboard() {
         document.getElementById('occ-value').innerText = lastOcc;
         document.getElementById('aqi-value').innerText = lastAqi;
         document.getElementById('temp-value').innerText = `${lastTemp}°C`;
-        
-        // 3. COMBINED INTELLIGENCE LOGIC
+
+        // 3. Logic for AQI Badge
+        let aqiLabel = "UNKNOWN";
+        let aqiColor = "#94a3b8";
+
+        if (lastAqi < 50) { aqiLabel = "EXCELLENT"; aqiColor = "#22c55e"; }
+        else if (lastAqi < 100) { aqiLabel = "GOOD"; aqiColor = "#84cc16"; }
+        else if (lastAqi < 200) { aqiLabel = "MODERATE"; aqiColor = "#eab308"; }
+        else { aqiLabel = "POOR"; aqiColor = "#ef4444"; }
+
+        const badge = document.getElementById('aqi-badge');
+        if (badge) {
+            badge.innerText = aqiLabel;
+            badge.style.color = aqiColor;
+            badge.style.borderColor = aqiColor;
+        }
+
+        // 4. Logic for Light Pill
+        const lamp = document.getElementById('light-indicator');
+        if (lamp) {
+            if (lastLdr === 1) {
+                lamp.innerText = "ON";
+                lamp.classList.add('active'); // Triggers the CSS green glow
+            } else {
+                lamp.innerText = "OFF";
+                lamp.classList.remove('active'); // Reverts to dark state
+            }
+        }
+
+        // 5. COMBINED INTELLIGENCE LOGIC
         let msg = "System Online";
         let color = "#22c55e"; // Default Green
 
@@ -37,7 +65,7 @@ async function updateDashboard() {
             color = "#b91c1c"; // Dark Red
         }
         else if (lastAqi > 400) {
-            msg = "CRITICAL: Poor Air Quality !";
+            msg = "CRITICAL: Poor Air Quality !, Turning on Air purifier.";
             color = "#ef4444"; // Red
         } 
         else if (lastOcc > 0 && lastTemp > 38) {
@@ -61,18 +89,23 @@ async function updateDashboard() {
             color = "#22c55e"; // Green
         }
 
-        // 4. Update Status Card Styling
+        // 6. Update Status Card Styling
         const statusBox = document.getElementById('status-card');
         const statusText = document.getElementById('status-message');
 
-        statusText.innerText = msg;
-        statusText.style.color = color;
-        statusBox.style.borderColor = color;
-        statusBox.style.boxShadow = `0 0 20px ${color}33`;
+        if (statusText && statusBox) {
+            statusText.innerText = msg;
+            statusText.style.color = color;
+            statusBox.style.borderColor = color;
+            statusBox.style.boxShadow = `0 0 20px ${color}33`;
+        }
 
     } catch (error) {
         console.error("Connection Error:", error);
-        document.getElementById('status-message').innerText = "Offline: Check ESP32";
+        const statusText = document.getElementById('status-message');
+        if (statusText) {
+            statusText.innerText = "Offline: Check ESP32";
+        }
     }
 }
 

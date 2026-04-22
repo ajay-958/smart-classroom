@@ -25,10 +25,16 @@
         <div class="card">
             <h2>Air Quality</h2>
             <p id="aqi-value" class="data-value loading">--</p>
+            <div id="aqi-badge" class="badge">---</div>
         </div>
     </div>
 
-    <div id="status-card" class="card">
+    <div class="small-block">
+        <span class="light-label">Main Lighting:</span>
+        <div id="light-indicator" class="status-lamp small">OFF</div>
+    </div>
+
+    <div id="status-card" class="card main-status">
         <h2>System Intelligence</h2>
         <p id="status-message" class="loading">Syncing Nodes...</p>
     </div>
