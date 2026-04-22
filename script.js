@@ -33,7 +33,7 @@ async function updateDashboard() {
 
         if (lastAqi < 50) { aqiLabel = "EXCELLENT"; aqiColor = "#22c55e"; }
         else if (lastAqi < 100) { aqiLabel = "GOOD"; aqiColor = "#84cc16"; }
-        else if (lastAqi < 200) { aqiLabel = "MODERATE"; aqiColor = "#eab308"; }
+        else if (lastAqi < 170) { aqiLabel = "MODERATE"; aqiColor = "#eab308"; }
         else { aqiLabel = "POOR"; aqiColor = "#ef4444"; }
 
         const badge = document.getElementById('aqi-badge');
@@ -46,7 +46,7 @@ async function updateDashboard() {
         // 4. Logic for Light Pill
         const lamp = document.getElementById('light-indicator');
         if (lamp) {
-            if (lastLdr === 1) {
+            if (lastOcc > 0) {
                 lamp.innerText = "ON";
                 lamp.classList.add('active'); // Triggers the CSS green glow
             } else {
@@ -60,7 +60,7 @@ async function updateDashboard() {
         let color = "#22c55e"; // Default Green
 
         // Fire Alert Priority
-        if (lastTemp > 45 && lastAqi > 400) {
+        if (lastTemp > 45 || lastAqi > 165) {
             msg = "CRITICAL: POSSIBLE FIRE ALERT !";
             color = "#b91c1c"; // Dark Red
         }
@@ -76,10 +76,6 @@ async function updateDashboard() {
             msg = "COMFORT ALERT: Room is too cold.";
             color = "#a1d4f1"; // Blue-ish
         }
-        else if (lastOcc > 0 && lastLdr === 0) {
-            msg = "WARNING: Lights Off while Occupied.";
-            color = "#f59e0b"; // Orange
-        } 
         else if (lastOcc === 0) {
             msg = "STANDBY: No Occupancy. Energy Saving Active.";
             color = "#38bdf8"; // Blue

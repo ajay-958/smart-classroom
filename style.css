@@ -147,3 +147,22 @@ h1 {
     h1 { font-size: 2rem; }
     .dashboard-grid { flex-direction: column; align-items: center; }
 }
+.nav-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--neon-blue);
+    border: 2px solid var(--neon-blue);
+    padding: 12px 30px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.nav-btn:hover {
+    background: var(--neon-blue);
+    color: #050b14;
+    box-shadow: 0 0 15px var(--neon-blue);
+}
