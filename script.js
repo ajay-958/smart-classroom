@@ -46,7 +46,7 @@ async function updateDashboard() {
         // 4. Logic for Light Pill
         const lamp = document.getElementById('light-indicator');
         if (lamp) {
-            if (lastOcc > 0) {
+            if (lastLdr === 1) {
                 lamp.innerText = "ON";
                 lamp.classList.add('active'); // Triggers the CSS green glow
             } else {
